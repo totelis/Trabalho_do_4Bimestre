@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineFlix - Planos de Assinatura</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/plans.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1><a href="index.html">CineFlix</a></h1>
+                </div>
+                <div class="nav-menu">
+                    <a href="index.html" class="nav-link">Início</a>
+                    <a href="index.html#catalog" class="nav-link">Catálogo</a>
+                    <a href="plans.html" class="nav-link active">Planos</a>
+                    <div class="nav-auth">
+                        <button class="btn-login" onclick="showLoginModal()">Entrar</button>
+                        <button class="btn-signup" onclick="showSignupModal()">Cadastrar</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="plans-hero">
+        <div class="container">
+            <h1 class="hero-title">Escolha o Plano Perfeito para Você</h1>
+            <p class="hero-subtitle">Assista filmes e séries ilimitados com qualidade excepcional</p>
+        </div>
+    </section>
+
+    <!-- Plans Comparison -->
+    <section class="plans-comparison">
+        <div class="container">
+            <div class="comparison-header">
+                <h2>Compare Nossos Planos</h2>
+                <div class="billing-toggle">
+                    <span class="billing-label">Mensal</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="billing-toggle">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="billing-label">Anual <span class="discount-badge">-20%</span></span>
+                </div>
+            </div>
+
+            <div class="plans-grid-detailed">
+                <!-- Basic Plan -->
+                <div class="plan-card-detailed">
+                    <div class="plan-header">
+                        <h3 class="plan-name">Básico</h3>
+                        <div class="plan-price">
+                            <span class="currency">R$</span>
+                            <span class="amount monthly-price">19,90</span>
+                            <span class="amount yearly-price hidden">15,92</span>
+                            <span class="period">/mês</span>
+                        </div>
+                        <p class="plan-description">Perfeito para quem está começando</p>
+                    </div>
+                    
+                    <div class="plan-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Qualidade HD (720p)</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>1 tela simultânea</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Catálogo completo</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Sem anúncios</span>
+                        </div>
+                        <div class="feature-item unavailable">
+                            <span class="feature-icon">✗</span>
+                            <span>Download offline</span>
+                        </div>
+                        <div class="feature-item unavailable">
+                            <span class="feature-icon">✗</span>
+                            <span>Conteúdo exclusivo</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-plan" onclick="selectPlan('basico', 'monthly')">Escolher Básico</button>
+                </div>
+
+                <!-- Standard Plan -->
+                <div class="plan-card-detailed featured">
+                    <div class="plan-badge">Mais Popular</div>
+                    <div class="plan-header">
+                        <h3 class="plan-name">Padrão</h3>
+                        <div class="plan-price">
+                            <span class="currency">R$</span>
+                            <span class="amount monthly-price">29,90</span>
+                            <span class="amount yearly-price hidden">23,92</span>
+                            <span class="period">/mês</span>
+                        </div>
+                        <p class="plan-description">A escolha mais popular</p>
+                    </div>
+                    
+                    <div class="plan-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Qualidade Full HD (1080p)</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>2 telas simultâneas</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Catálogo completo</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Sem anúncios</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Download offline</span>
+                        </div>
+                        <div class="feature-item unavailable">
+                            <span class="feature-icon">✗</span>
+                            <span>Conteúdo exclusivo</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-plan" onclick="selectPlan('padrao', 'monthly')">Escolher Padrão</button>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="plan-card-detailed">
+                    <div class="plan-header">
+                        <h3 class="plan-name">Premium</h3>
+                        <div class="plan-price">
+                            <span class="currency">R$</span>
+                            <span class="amount monthly-price">39,90</span>
+                            <span class="amount yearly-price hidden">31,92</span>
+                            <span class="period">/mês</span>
+                        </div>
+                        <p class="plan-description">A experiência completa</p>
+                    </div>
+                    
+                    <div class="plan-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Qualidade 4K Ultra HD</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>4 telas simultâneas</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Catálogo completo</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Sem anúncios</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Download offline</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Conteúdo exclusivo</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-plan" onclick="selectPlan('premium', 'monthly')">Escolher Premium</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Posso cancelar a qualquer momento?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sim! Você pode cancelar sua assinatura a qualquer momento sem taxas de cancelamento. Seu acesso continuará até o final do período pago.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Posso mudar de plano depois?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Claro! Você pode fazer upgrade ou downgrade do seu plano a qualquer momento. As mudanças entram em vigor no próximo ciclo de cobrança.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Quantos dispositivos posso usar?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Você pode instalar o CineFlix em quantos dispositivos quiser, mas o número de telas simultâneas varia conforme o plano escolhido.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Há período de teste gratuito?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sim! Oferecemos 7 dias grátis para novos usuários. Você pode cancelar antes do fim do período sem cobrança.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Quais formas de pagamento aceitas?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Aceitamos cartões de crédito (Visa, Mastercard, Elo), débito, PIX e boleto bancário. Todos os pagamentos são processados com segurança.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>O conteúdo está disponível offline?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nos planos Padrão e Premium, você pode baixar filmes e séries para assistir offline em dispositivos móveis e tablets.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content payment-modal-content">
+            <span class="close" onclick="closeModal('payment-modal')">&times;</span>
+            <div class="payment-header">
+                <h2>Finalizar Assinatura</h2>
+                <div class="selected-plan-info">
+                    <h3 id="selected-plan-name">Plano Padrão</h3>
+                    <p id="selected-plan-price">R$ 29,90/mês</p>
+                </div>
+            </div>
+            
+            <form id="payment-form">
+                <div class="payment-steps">
+                    <!-- Step 1: Account Info -->
+                    <div class="payment-step active" data-step="1">
+                        <h3>1. Informações da Conta</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="account-name">Nome Completo:</label>
+                                <input type="text" id="account-name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="account-email">Email:</label>
+                                <input type="email" id="account-email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="account-password">Senha:</label>
+                            <input type="password" id="account-password" name="password" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Payment Method -->
+                    <div class="payment-step" data-step="2">
+                        <h3>2. Método de Pagamento</h3>
+                        <div class="payment-methods">
+                            <label class="payment-method">
+                                <input type="radio" name="payment-method" value="credit-card" checked>
+                                <div class="method-info">
+                                    <span class="method-icon">💳</span>
+                                    <span>Cartão de Crédito</span>
+                                </div>
+                            </label>
+                            <label class="payment-method">
+                                <input type="radio" name="payment-method" value="pix">
+                                <div class="method-info">
+                                    <span class="method-icon">📱</span>
+                                    <span>PIX</span>
+                                </div>
+                            </label>
+                            <label class="payment-method">
+                                <input type="radio" name="payment-method" value="boleto">
+                                <div class="method-info">
+                                    <span class="method-icon">🧾</span>
+                                    <span>Boleto</span>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <!-- Credit Card Form -->
+                        <div id="credit-card-form" class="payment-form-section">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="card-number">Número do Cartão:</label>
+                                    <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                                </div>
+                                <div class="form-group">
+                                    <label for="card-name">Nome no Cartão:</label>
+                                    <input type="text" id="card-name" name="card-name" placeholder="Nome como no cartão">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="card-expiry">Validade:</label>
+                                    <input type="text" id="card-expiry" name="card-expiry" placeholder="MM/AA" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label for="card-cvv">CVV:</label>
+                                    <input type="text" id="card-cvv" name="card-cvv" placeholder="123" maxlength="4">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- PIX Form -->
+                        <div id="pix-form" class="payment-form-section hidden">
+                            <div class="pix-info">
+                                <p>Você receberá um código PIX para pagamento após confirmar a assinatura.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Boleto Form -->
+                        <div id="boleto-form" class="payment-form-section hidden">
+                            <div class="boleto-info">
+                                <p>O boleto será gerado após a confirmação e enviado por email.</p>
+                                <p><strong>Vencimento:</strong> 3 dias úteis</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Confirmation -->
+                    <div class="payment-step" data-step="3">
+                        <h3>3. Confirmação</h3>
+                        <div class="order-summary">
+                            <div class="summary-item">
+                                <span>Plano:</span>
+                                <span id="summary-plan">Padrão</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Período:</span>
+                                <span id="summary-period">Mensal</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Valor:</span>
+                                <span id="summary-price">R$ 29,90/mês</span>
+                            </div>
+                            <div class="summary-item total">
+                                <span>Total:</span>
+                                <span id="summary-total">R$ 29,90</span>
+                            </div>
+                        </div>
+                        
+                        <div class="terms-agreement">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="terms-agreement" required>
+                                <span class="checkmark"></span>
+                                Concordo com os <a href="#" target="_blank">Termos de Uso</a> e <a href="#" target="_blank">Política de Privacidade</a>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment-navigation">
+                    <button type="button" class="btn-secondary" id="prev-step" onclick="previousStep()" style="display: none;">Anterior</button>
+                    <button type="button" class="btn-primary" id="next-step" onclick="nextStep()">Próximo</button>
+                    <button type="submit" class="btn-primary" id="complete-payment" style="display: none;">Finalizar Pagamento</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('login-modal')">&times;</span>
+            <h2>Entrar</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email:</label>
+                    <input type="email" id="login-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Senha:</label>
+                    <input type="password" id="login-password" name="password" required>
+                </div>
+                <button type="submit" class="btn-primary">Entrar</button>
+                <p class="modal-switch">
+                    Não tem conta? <a href="#" onclick="switchModal('login-modal', 'signup-modal')">Cadastre-se</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signup-modal')">&times;</span>
+            <h2>Cadastrar</h2>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signup-name">Nome:</label>
+                    <input type="text" id="signup-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email:</label>
+                    <input type="email" id="signup-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Senha:</label>
+                    <input type="password" id="signup-password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirmar Senha:</label>
+                    <input type="password" id="signup-confirm-password" name="confirm-password" required>
+                </div>
+                <button type="submit" class="btn-primary">Cadastrar</button>
+                <p class="modal-switch">
+                    Já tem conta? <a href="#" onclick="switchModal('signup-modal', 'login-modal')">Entre aqui</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/plans.js"></script>
+</body>
+</html>

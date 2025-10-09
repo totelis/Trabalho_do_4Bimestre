@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineFlix - Administração</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>CineFlix Admin</h1>
+                </div>
+                <div class="nav-menu">
+                    <a href="index.html" class="nav-link">← Voltar ao Site</a>
+                    <a href="#dashboard" class="nav-link">Dashboard</a>
+                    <a href="#movies" class="nav-link">Filmes</a>
+                    <a href="#users" class="nav-link">Usuários</a>
+                    <div class="nav-auth">
+                        <span class="admin-greeting">Admin Panel</span>
+                        <button class="btn-login" onclick="logout()">Sair</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="admin-section">
+        <div class="container">
+            <h2 class="section-title">Dashboard</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🎬</div>
+                    <div class="stat-info">
+                        <h3 id="total-movies">0</h3>
+                        <p>Total de Filmes</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-info">
+                        <h3 id="total-users">0</h3>
+                        <p>Usuários Cadastrados</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-info">
+                        <h3 id="total-revenue">R$ 0</h3>
+                        <p>Receita Mensal</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-info">
+                        <h3 id="active-subscriptions">0</h3>
+                        <p>Assinaturas Ativas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Movies Management Section -->
+    <section id="movies" class="admin-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Gerenciar Filmes</h2>
+                <button class="btn-primary" onclick="showAddMovieModal()">+ Adicionar Filme</button>
+            </div>
+            
+            <div class="admin-table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Ano</th>
+                            <th>Gênero</th>
+                            <th>Rating</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="movies-table-body">
+                        <!-- Movies will be loaded dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Users Management Section -->
+    <section id="users" class="admin-section">
+        <div class="container">
+            <h2 class="section-title">Gerenciar Usuários</h2>
+            
+            <div class="admin-table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Plano</th>
+                            <th>Data de Cadastro</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table-body">
+                        <!-- Users will be loaded dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Movie Modal -->
+    <div id="add-movie-modal" class="modal">
+        <div class="modal-content admin-modal-content">
+            <span class="close" onclick="closeModal('add-movie-modal')">&times;</span>
+            <h2>Adicionar Novo Filme</h2>
+            <form id="add-movie-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="movie-title">Título:</label>
+                        <input type="text" id="movie-title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="movie-year">Ano de Lançamento:</label>
+                        <input type="number" id="movie-year" name="year" min="1900" max="2030" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="movie-genre">Gênero:</label>
+                        <select id="movie-genre" name="genre" required>
+                            <option value="">Selecione um gênero</option>
+                            <option value="acao">Ação</option>
+                            <option value="drama">Drama</option>
+                            <option value="comedia">Comédia</option>
+                            <option value="terror">Terror</option>
+                            <option value="ficcao">Ficção Científica</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="movie-rating">Rating:</label>
+                        <input type="number" id="movie-rating" name="rating" min="0" max="10" step="0.1" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="movie-synopsis">Sinopse:</label>
+                    <textarea id="movie-synopsis" name="synopsis" rows="4" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="movie-poster">URL do Poster:</label>
+                    <input type="url" id="movie-poster" name="poster" placeholder="https://exemplo.com/poster.jpg">
+                </div>
+                
+                <div class="form-group">
+                    <label for="movie-video">Arquivo de Vídeo:</label>
+                    <input type="file" id="movie-video" name="video" accept="video/*">
+                    <small>Ou insira uma URL do vídeo:</small>
+                    <input type="url" id="movie-video-url" name="video-url" placeholder="https://exemplo.com/video.mp4">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('add-movie-modal')">Cancelar</button>
+                    <button type="submit" class="btn-primary">Adicionar Filme</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Movie Modal -->
+    <div id="edit-movie-modal" class="modal">
+        <div class="modal-content admin-modal-content">
+            <span class="close" onclick="closeModal('edit-movie-modal')">&times;</span>
+            <h2>Editar Filme</h2>
+            <form id="edit-movie-form">
+                <input type="hidden" id="edit-movie-id" name="id">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-movie-title">Título:</label>
+                        <input type="text" id="edit-movie-title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-movie-year">Ano de Lançamento:</label>
+                        <input type="number" id="edit-movie-year" name="year" min="1900" max="2030" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-movie-genre">Gênero:</label>
+                        <select id="edit-movie-genre" name="genre" required>
+                            <option value="acao">Ação</option>
+                            <option value="drama">Drama</option>
+                            <option value="comedia">Comédia</option>
+                            <option value="terror">Terror</option>
+                            <option value="ficcao">Ficção Científica</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-movie-rating">Rating:</label>
+                        <input type="number" id="edit-movie-rating" name="rating" min="0" max="10" step="0.1" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-movie-synopsis">Sinopse:</label>
+                    <textarea id="edit-movie-synopsis" name="synopsis" rows="4" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-movie-poster">URL do Poster:</label>
+                    <input type="url" id="edit-movie-poster" name="poster">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('edit-movie-modal')">Cancelar</button>
+                    <button type="submit" class="btn-primary">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

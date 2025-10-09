@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineFlix - Sua Plataforma de Streaming</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>CineFlix</h1>
+                </div>
+                <div class="nav-menu">
+                    <a href="#home" class="nav-link">Início</a>
+                    <a href="#catalog" class="nav-link">Catálogo</a>
+                    <a href="#plans" class="nav-link">Planos</a>
+                    <div class="nav-auth">
+                        <button class="btn-login" onclick="showLoginModal()">Entrar</button>
+                        <button class="btn-signup" onclick="showSignupModal()">Cadastrar</button>
+                    </div>
+                </div>
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Filmes e séries ilimitados</h1>
+            <p class="hero-subtitle">Assista onde quiser. Cancele quando quiser.</p>
+            <div class="hero-cta">
+                <button class="btn-primary" onclick="showSignupModal()">Começar Agora</button>
+                <button class="btn-secondary" onclick="scrollToSection('plans')">Ver Planos</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Movies -->
+    <section class="featured-movies">
+        <div class="container">
+            <h2 class="section-title">Destaques</h2>
+            <div class="movies-grid" id="featured-movies">
+                <!-- Movies will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section id="catalog" class="catalog">
+        <div class="container">
+            <h2 class="section-title">Catálogo Completo</h2>
+            <div class="catalog-filters">
+                <button class="filter-btn active" data-genre="all">Todos</button>
+                <button class="filter-btn" data-genre="acao">Ação</button>
+                <button class="filter-btn" data-genre="drama">Drama</button>
+                <button class="filter-btn" data-genre="comedia">Comédia</button>
+                <button class="filter-btn" data-genre="terror">Terror</button>
+                <button class="filter-btn" data-genre="ficcao">Ficção Científica</button>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Pesquisar filmes...">
+                <button class="search-btn">🔍</button>
+            </div>
+            <div class="movies-grid" id="catalog-movies">
+                <!-- Movies will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section id="plans" class="plans">
+        <div class="container">
+            <h2 class="section-title">Escolha seu Plano</h2>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3 class="plan-name">Básico</h3>
+                        <div class="plan-price">
+                            <span class="currency">R$</span>
+                            <span class="amount">19,90</span>
+                            <span class="period">/mês</span>
+                        </div>
+                    </div>
+                    <div class="plan-features">
+                        <ul>
+                            <li>✓ Qualidade HD</li>
+                            <li>✓ 1 tela simultânea</li>
+                            <li>✓ Catálogo completo</li>
+                            <li>✓ Sem anúncios</li>
+                        </ul>
+                    </div>
+                    <button class="btn-plan" onclick="selectPlan('basico')">Escolher Plano</button>
+                </div>
+
+                <div class="plan-card featured">
+                    <div class="plan-badge">Mais Popular</div>
+                    <div class="plan-header">
+                        <h3 class="plan-name">Padrão</h3>
+                        <div class="plan-price">
+                            <span class="currency">R$</span>
+                            <span class="amount">29,90</span>
+                            <span class="period">/mês</span>
+                        </div>
+                    </div>
+                    <div class="plan-features">
+                        <ul>
+                            <li>✓ Qualidade Full HD</li>
+                            <li>✓ 2 telas simultâneas</li>
+                            <li>✓ Catálogo completo</li>
+                            <li>✓ Sem anúncios</li>
+                            <li>✓ Download offline</li>
+                        </ul>
+                    </div>
+                    <button class="btn-plan" onclick="selectPlan('padrao')">Escolher Plano</button>
+                </div>
+
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3 class="plan-name">Premium</h3>
+                        <div class="plan-price">
+                            <span class="currency">R$</span>
+                            <span class="amount">39,90</span>
+                            <span class="period">/mês</span>
+                        </div>
+                    </div>
+                    <div class="plan-features">
+                        <ul>
+                            <li>✓ Qualidade 4K Ultra HD</li>
+                            <li>✓ 4 telas simultâneas</li>
+                            <li>✓ Catálogo completo</li>
+                            <li>✓ Sem anúncios</li>
+                            <li>✓ Download offline</li>
+                            <li>✓ Conteúdo exclusivo</li>
+                        </ul>
+                    </div>
+                    <button class="btn-plan" onclick="selectPlan('premium')">Escolher Plano</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>CineFlix</h4>
+                    <p>Sua plataforma de streaming favorita</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#catalog">Catálogo</a></li>
+                        <li><a href="#plans">Planos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="#">Central de Ajuda</a></li>
+                        <li><a href="#">Contato</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CineFlix. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('login-modal')">&times;</span>
+            <h2>Entrar</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email:</label>
+                    <input type="email" id="login-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Senha:</label>
+                    <input type="password" id="login-password" name="password" required>
+                </div>
+                <button type="submit" class="btn-primary">Entrar</button>
+                <p class="modal-switch">
+                    Não tem conta? <a href="#" onclick="switchModal('login-modal', 'signup-modal')">Cadastre-se</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signup-modal')">&times;</span>
+            <h2>Cadastrar</h2>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signup-name">Nome:</label>
+                    <input type="text" id="signup-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email:</label>
+                    <input type="email" id="signup-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Senha:</label>
+                    <input type="password" id="signup-password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirmar Senha:</label>
+                    <input type="password" id="signup-confirm-password" name="confirm-password" required>
+                </div>
+                <button type="submit" class="btn-primary">Cadastrar</button>
+                <p class="modal-switch">
+                    Já tem conta? <a href="#" onclick="switchModal('signup-modal', 'login-modal')">Entre aqui</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Movie Detail Modal -->
+    <div id="movie-modal" class="modal">
+        <div class="modal-content movie-modal-content">
+            <span class="close" onclick="closeModal('movie-modal')">&times;</span>
+            <div id="movie-details">
+                <!-- Movie details will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Player Modal -->
+    <div id="player-modal" class="modal player-modal">
+        <div class="player-container">
+            <span class="close player-close" onclick="closePlayer()">&times;</span>
+            <video id="video-player" controls>
+                <source src="" type="video/mp4">
+                Seu navegador não suporta o elemento de vídeo.
+            </video>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
